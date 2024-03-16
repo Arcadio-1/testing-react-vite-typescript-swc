@@ -1,7 +1,7 @@
 import { Button } from "antd";
 import React from "react";
-import { cn } from "../../partOne/lib/utils";
 import { EActionType } from "../types/types";
+import { cn } from "../../lib/utils";
 
 interface ActionsBtnProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {

@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import { cn } from "../partOne/lib/utils";
+import { cn } from "../lib/utils";
 type ContainerProps = React.HTMLAttributes<HTMLDivElement> & {
   children: ReactNode;
 };
@@ -9,7 +9,7 @@ export const Container: React.FC<ContainerProps> = ({
   ...props
 }) => {
   return (
-    <div className={`grid place-items-center h-dvh mx-4`}>
+    <div className={`grid place-items-center h-dvh m-4`}>
       <div
         {...props}
         className={cn(

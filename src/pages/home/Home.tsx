@@ -17,6 +17,9 @@ const Home: React.FC = () => {
         <Link className="text-yellow-500" to={"/partTwo"}>
           part two
         </Link>
+        <Link className="text-yellow-500" to={"/partThree"}>
+          part three
+        </Link>
       </div>
     </>
   );

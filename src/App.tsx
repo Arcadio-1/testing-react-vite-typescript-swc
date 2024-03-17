@@ -7,6 +7,8 @@ import PartFour from "./pages/partFour/PartFour";
 import Login from "./pages/partFour/login/Login";
 import Signup from "./pages/partFour/signup/Signup";
 import Layout from "./components/partFour/ui/Layout";
+import { Books } from "./pages/partFive/Books";
+import { Book } from "./pages/partFive/book/Book";
 
 function App() {
   return (
@@ -21,6 +23,11 @@ function App() {
             <Route element={<PartFour />} index />
             <Route element={<Login />} path="login" />
             <Route element={<Signup />} path="signup" />
+          </Route>
+          <Route path="/partFive">
+            <Route element={<Books />} index />
+            <Route path="books" element={<Books />} />
+            <Route path="books/:id/*" element={<Book />} />
           </Route>
           <Route path="*" element={<h1>404</h1>} />
         </Routes>

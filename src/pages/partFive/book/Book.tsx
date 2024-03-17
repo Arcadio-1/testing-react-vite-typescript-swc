@@ -1,8 +1,14 @@
 import React from "react";
 import { useParams } from "react-router-dom";
+import BookDetils from "../../../components/partFive/BookDetils/BookDetils";
 
 export const Book = () => {
   const param = useParams();
-  console.log(param);
-  return <div>Book id</div>;
+  const { id } = param;
+
+  return (
+    <section className="flex items-center justify-center mt-5">
+      <BookDetils id={id} />
+    </section>
+  );
 };

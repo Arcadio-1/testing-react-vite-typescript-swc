@@ -301,6 +301,32 @@
       "year": 1869
     }
   ],
+  "myBooks": [
+    {
+      "id": "659f5c63b35dcef775506ce4"
+    },
+    {
+      "id": "659f5c63b35dcef775506ce5"
+    },
+    {
+      "id": "659f5c63b35dcef775506cde"
+    },
+    {
+      "id": "659f5c63b35dcef775506ccf"
+    },
+    {
+      "id": "659f5c63b35dcef775506cd9"
+    },
+    {
+      "id": "659f5c63b35dcef775506ce2"
+    },
+    {
+      "id": "659f5c63b35dcef775506cd3"
+    },
+    {
+      "id": "659f5c63b35dcef775506cd2"
+    }
+  ],
   "users": [
     {
       "id": 1,

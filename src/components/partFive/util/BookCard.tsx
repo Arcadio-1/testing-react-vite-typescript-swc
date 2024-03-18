@@ -8,6 +8,15 @@ import { cn } from "../../lib/utils";
 // import CloseIcon from "../ui/icons/Close_icon";
 // import PlusIcon from "../ui/icons/Plus_icon";
 import { Book } from "../types/types";
+import Button from "../ui/Button";
+import Plus_icon from "../ui/icons/Plus_icon";
+import {
+  addToMyBooks,
+  getBookInMyBook,
+  removeToMyBooks,
+} from "../servicee/booksApi";
+import { useQuery } from "@tanstack/react-query";
+import Close_icon from "../ui/icons/Close_icon";
 
 interface BookCardProps extends React.HTMLAttributes<HTMLDivElement> {
   book: Book;
@@ -24,6 +33,11 @@ const BookCard: React.FC<BookCardProps> = ({
 }) => {
   // const list = useAppSelector((state) => state.list.books);
   // const dispatch = useAppDispatch();
+
+  const myBooksQuery = useQuery({
+    queryKey: ["myBooks"],
+    queryFn: getBookInMyBook,
+  });
 
   // const addHandler = () => {
   //   dispatch(add(id));
@@ -54,23 +68,32 @@ const BookCard: React.FC<BookCardProps> = ({
           ) : (
             <h2 className="text-xl text-center">{title}</h2>
           )}
-          {/* {list.includes(id) ? (
+          {myBooksQuery.data?.includes(id) ? (
             <Button
-              onClick={removeHandler}
+              onClick={async () => {
+                console.log("log");
+                const res = await removeToMyBooks(id);
+                console.log(res);
+              }}
               className="w-full flex items-center justify-center text-xl"
             >
-              <CloseIcon />
+              <Close_icon />
               Remove
             </Button>
           ) : (
             <Button
-              onClick={addHandler}
+              onClick={async () => {
+                console.log("log");
+                const res = await addToMyBooks(id);
+                console.log(res);
+              }}
               className="w-full flex items-center justify-center text-xl"
             >
-              <PlusIcon />
+              <Plus_icon />
               Add
             </Button>
-          )} */}
+          )}
+
           {children}
         </div>
       </div>

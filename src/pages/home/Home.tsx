@@ -23,8 +23,8 @@ const Home: React.FC = () => {
         <Link className="text-pink-500" to={"/partFour"}>
           password strength +login/signup
         </Link>
-        <Link className="text-pink-500" to={"/partFive"}>
-          books with react query
+        <Link className="text-teal-600" to={"/partFive"}>
+          books with react query + Context api
         </Link>
       </div>
     </>

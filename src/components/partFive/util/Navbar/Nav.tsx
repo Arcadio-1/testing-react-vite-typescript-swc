@@ -1,5 +1,5 @@
 import Content from "./components/Content";
-const Nav = () => {
+const Nav: React.FC = () => {
   return (
     <header className="">
       <Content />

@@ -5,7 +5,7 @@ import MyBooksIcon from "../../ui/icons/My_books_icon";
 import { Paths } from "../../types/types";
 import useCurrentPath from "../../Hook/useCurrentPath";
 
-const Nav_sub = () => {
+const Nav_sub: React.FC = () => {
   const { currentPath } = useCurrentPath();
 
   return (

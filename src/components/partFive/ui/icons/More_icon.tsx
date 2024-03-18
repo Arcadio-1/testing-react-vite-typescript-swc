@@ -5,7 +5,7 @@ import { SVGProps } from "react";
 
 type Props = SVGProps<SVGSVGElement>;
 
-const More_icon = ({ className }: Props) => {
+const More_icon: React.FC<Props> = ({ className }) => {
   return (
     <svg className={cn(" h-5 w-5 fill-first", className)} viewBox="0 0 16 16">
       <circle cx="2" cy="8" r="2" />

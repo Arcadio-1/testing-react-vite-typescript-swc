@@ -4,45 +4,30 @@ import BookCard from "../util/BookCard";
 import Button from "../ui/Button";
 import Moreicon from "../ui/icons/More_icon";
 import Notfound from "../util/Not_found";
-// import {
-//   allFilterdBooks,
-//   useFetchAllBooksQuery,
-// } from "../../lib/store/features/books_api/books-api-slice";
-// import { useAppSelector } from "../../lib/store/hooks";
 import { Link } from "react-router-dom";
-// import { useQueryClient } from "@t2eanstack/react-query";
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import { Book } from "../types/types";
-// import { useQuery } from "@tanstack/react-query";
-
-const getPosts = () => {
-  return axios.get("https://my-json-server.typicode.com/Arcadio-1/books/books");
-};
+import { getBooks } from "../api/books";
+import { useContext } from "react";
+import { Context } from "../util/Layout/Layout";
 
 const HomePage = () => {
+  const { searchTitle } = useContext(Context);
   const postsQuery = useQuery({
-    queryKey: ["posts"],
-    queryFn: getPosts,
+    queryKey: ["books", searchTitle],
+    queryFn: () => getBooks(searchTitle),
     // placeholderData: [{ id: 1, title: "Initial Data" }],
   });
 
-  // if (postsQuery.status === "pending") return <h1>Loading...</h1>;
-  // if (postsQuery.status === "error") {
-  //   return <h1>{JSON.stringify(postsQuery.error)}</h1>;
-  // }
-  // console.log(postsQuery.data.data);
-  // const { isLoading, isSuccess } = useFetchAllBooksQuery();
-  // const books = useAppSelector(allFilterdBooks);
   return (
     <>
       {postsQuery.status === "pending" ? (
         <ListSkeletonZLoading />
       ) : (
         <>
-          {postsQuery.status !== "error" && postsQuery.data.data.length ? (
+          {postsQuery.status !== "error" && postsQuery.data.length ? (
             <List>
-              {postsQuery.data.data.map((book: Book) => {
+              {postsQuery.data.map((book: Book) => {
                 return (
                   <BookCard key={book.id} book={book}>
                     <Link to={`/partFive/books/${book.id}`}>

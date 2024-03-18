@@ -5,7 +5,7 @@ import { SVGProps } from "react";
 
 type Props = SVGProps<SVGSVGElement>;
 
-const Profile_icon = ({ className }: Props) => {
+const Profile_icon: React.FC<Props> = ({ className }) => {
   return (
     <svg className={cn(" h-5 w-5 fill-first", className)} viewBox="0 0 24 24">
       <path d="M12.0236 3.05273C10.1283 3.05273 8.5918 4.58919 8.5918 6.48451C8.5918 8.37983 10.1283 9.91629 12.0236 9.91629C13.9189 9.91629 15.4554 8.37983 15.4554 6.48451C15.4554 4.58919 13.9189 3.05273 12.0236 3.05273ZM7.0918 6.48451C7.0918 3.76077 9.29983 1.55273 12.0236 1.55273C14.7473 1.55273 16.9554 3.76077 16.9554 6.48451C16.9554 9.20826 14.7473 11.4163 12.0236 11.4163C9.29983 11.4163 7.0918 9.20826 7.0918 6.48451Z"></path>

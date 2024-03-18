@@ -1,10 +1,10 @@
 import List from "./List";
 
-const List_skeleton_loading = () => {
+const List_skeleton_loading: React.FC = () => {
   const arr = Array.from(Array(25));
   return (
     <List>
-      {arr.map((item, index) => {
+      {arr.map((_, index) => {
         return (
           <div
             className="animate-pulse  h-full bg-bg_2 p-2 rounded-lg"

@@ -1,5 +1,5 @@
 import React from "react";
-import { Book } from "../../types/types";
+import { Book } from "../types/types";
 
 interface Book_detail {
   label: string;
@@ -8,7 +8,7 @@ interface Book_detail {
 interface Props {
   book: Book;
 }
-const Details = ({ book }: Props) => {
+const Details: React.FC<Props> = ({ book }) => {
   const book_details: Array<Book_detail> = [
     { label: "full title", value: book.title },
     book.author

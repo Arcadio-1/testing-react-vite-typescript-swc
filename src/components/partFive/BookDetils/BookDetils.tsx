@@ -5,24 +5,22 @@ import Button from "../ui/Button";
 import Backicon from "../ui/icons/Back_icon";
 import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+import { getBook } from "../api/books";
+import { useEffect } from "react";
 
 interface IBook {
   id: string | undefined;
 }
 
-const getPost = (id: string) => {
-  return axios.get(
-    `https://my-json-server.typicode.com/Arcadio-1/books/books/${id}`
-  );
-};
-
 const BookDetils = ({ id = "" }: IBook) => {
   const postQuery = useQuery({
-    queryKey: ["posts", id],
-    queryFn: () => getPost(id),
+    queryKey: ["books", id],
+    queryFn: () => getBook(id),
   });
-  // const { data: book, isLoading, isSuccess } = useFetchBookQuery(id);
+  useEffect(() => {
+    console.log(postQuery.data);
+  }, [postQuery.data]);
+
   return (
     <div className="w-full flex justify-center">
       {postQuery.status === "pending" ? (
@@ -32,8 +30,8 @@ const BookDetils = ({ id = "" }: IBook) => {
           {postQuery.status !== "error" ? (
             <BookCard
               className="max-w-80 grow"
-              book={postQuery.data?.data}
-              custom_data={<Details book={postQuery.data?.data} />}
+              book={postQuery.data}
+              custom_data={<Details book={postQuery.data} />}
             >
               <Link to={`/partFive`}>
                 <Button className="w-full flex items-center justify-center text-xl">

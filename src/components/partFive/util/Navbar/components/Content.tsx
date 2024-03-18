@@ -1,7 +1,8 @@
 import Searchinput from "./Search_input";
 import Navigation from "./Navigation";
 import Logo from "./Logo";
-const Content = () => {
+import React from "react";
+const Content: React.FC = () => {
   return (
     <section className="bg-bg_2 relative">
       <nav

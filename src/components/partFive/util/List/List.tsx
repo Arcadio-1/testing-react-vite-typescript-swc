@@ -5,7 +5,7 @@ interface DivProps extends React.HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
 }
 
-const List = ({ className, children, ...props }: DivProps) => {
+const List: React.FC<DivProps> = ({ className, children, ...props }) => {
   return (
     <div
       className={cn(

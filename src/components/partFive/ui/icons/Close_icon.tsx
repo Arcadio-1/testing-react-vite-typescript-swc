@@ -5,7 +5,7 @@ import { SVGProps } from "react";
 
 type Props = SVGProps<SVGSVGElement>;
 
-const Close_icon = ({ className }: Props) => {
+const Close_icon: React.FC<Props> = ({ className }) => {
   return (
     <svg className={cn(" h-5 w-5 fill-first", className)} viewBox="0 0 200 200">
       <title />

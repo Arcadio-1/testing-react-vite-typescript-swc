@@ -1,8 +1,9 @@
+import React from "react";
 import notfound_Svg from "../not-found.png";
 import Button from "../ui/Button";
 import { Link } from "react-router-dom";
 
-const Not_found = () => {
+const Not_found: React.FC = () => {
   return (
     <div className=" flex flex-col justify-center items-center gap-6 w-full max-w-xl mx-auto p-8">
       <img

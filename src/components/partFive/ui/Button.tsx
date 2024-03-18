@@ -6,7 +6,12 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   selected?: boolean;
 }
 
-const Button = ({ selected, className, children, ...props }: ButtonProps) => {
+const Button: React.FC<ButtonProps> = ({
+  selected,
+  className,
+  children,
+  ...props
+}) => {
   return (
     <>
       <button

@@ -2,7 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import BookDetils from "../../../components/partFive/BookDetils/BookDetils";
 
-export const Book = () => {
+export const Book: React.FC = () => {
   const param = useParams();
   const { id } = param;
 

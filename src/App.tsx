@@ -10,6 +10,7 @@ import Layout from "./components/partFour/ui/Layout";
 import { Books } from "./pages/partFive/Books";
 import { Book } from "./pages/partFive/book/Book";
 import { Layout as PartFiveLayout } from "./components/partFive/util/Layout/Layout";
+import { MyBooks } from "./pages/partFive/myBooks/MyBooks";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path="/partFive" element={<PartFiveLayout />}>
             <Route element={<Books />} index />
             <Route path="books" element={<Books />} />
+            <Route path="myBooks" element={<MyBooks />} />
             <Route path="books/:id" element={<Book />} />
           </Route>
         </Route>

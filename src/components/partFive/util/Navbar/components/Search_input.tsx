@@ -1,14 +1,11 @@
-// import { setSearch } from "../../../../lib/store/features/search/search_slice";
-// import { useAppDispatch, useAppSelector } from "../../../../lib/store/hooks";
-import { useState } from "react";
+import { useContext } from "react";
 import Button from "../../../ui/Button";
 import CloseIcon from "../../../ui/icons/Close_icon";
 import SearchIcon from "../../../ui/icons/Search_icon";
+import { Context } from "../../Layout/Layout";
 
-const Search_input = () => {
-  const [search, setSearch] = useState("");
-  // const search = useAppSelector((state) => state.search.search);
-  // const dispatch = useAppDispatch();
+const Search_input: React.FC = () => {
+  const { searchTitle, setSearchTitle } = useContext(Context);
   return (
     <div className="relative md:max-w-[40rem] grow mr-auto">
       <label htmlFor="search_input" className="absolute top-1/4 left-2">
@@ -17,19 +14,17 @@ const Search_input = () => {
       <input
         placeholder="Enter Title..."
         onChange={(event) => {
-          setSearch(event.target.value);
-          // dispatch(setSearch(event.target.value));
+          setSearchTitle(event.target.value);
         }}
-        value={search}
+        value={searchTitle}
         id="search_input"
         type="text"
         className="bg-bg_1 w-full px-10 md:leading-9 leading-8 focus:outline-none focus:border-first focus:ring-1 focus:ring-first rounded-lg text-first_text_color"
       />
-      {search && (
+      {searchTitle && (
         <Button
           onClick={() => {
-            setSearch("");
-            // dispatch(setSearch(""));
+            setSearchTitle("");
           }}
           className="absolute top-1 right-1 px-1"
         >

@@ -15,13 +15,13 @@ interface BookCardProps extends React.HTMLAttributes<HTMLDivElement> {
   children?: ReactNode;
 }
 
-const BookCard = ({
+const BookCard: React.FC<BookCardProps> = ({
   book: { imageLink, title, id },
   className,
   custom_data,
   children,
   ...props
-}: BookCardProps) => {
+}) => {
   // const list = useAppSelector((state) => state.list.books);
   // const dispatch = useAppDispatch();
 

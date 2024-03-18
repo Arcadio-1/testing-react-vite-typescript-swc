@@ -12,16 +12,19 @@ const Home: React.FC = () => {
       </Helmet>
       <div className="flex flex-col gap-2">
         <Link className="text-red-400" to={"/partOne"}>
-          part one
+          three step form chart
         </Link>
         <Link className="text-yellow-500" to={"/partTwo"}>
-          part two
+          dynamic table on image
         </Link>
         <Link className="text-purple-600" to={"/partThree"}>
-          part three
+          category manager
         </Link>
         <Link className="text-pink-500" to={"/partFour"}>
-          part four
+          password strength +login/signup
+        </Link>
+        <Link className="text-teal-600" to={"/partFive"}>
+          books with react query + Context api
         </Link>
       </div>
     </>

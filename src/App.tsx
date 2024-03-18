@@ -7,12 +7,16 @@ import PartFour from "./pages/partFour/PartFour";
 import Login from "./pages/partFour/login/Login";
 import Signup from "./pages/partFour/signup/Signup";
 import Layout from "./components/partFour/ui/Layout";
+import { Books } from "./pages/partFive/Books";
+import { Book } from "./pages/partFive/book/Book";
+import { Layout as PartFiveLayout } from "./components/partFive/util/Layout/Layout";
+import { MyBooks } from "./pages/partFive/myBooks/MyBooks";
 
 function App() {
   return (
     <>
-      <main className="pb-14 md:pb-2 pt-2 w-screen">
-        <Routes>
+      <Routes>
+        <Route>
           <Route path="/" element={<Home />} />
           <Route path="/partOne" element={<PartOne />} />
           <Route path="/partTwo" element={<PartTwo />} />
@@ -22,9 +26,19 @@ function App() {
             <Route element={<Login />} path="login" />
             <Route element={<Signup />} path="signup" />
           </Route>
+        </Route>
+        <Route>
+          <Route path="/partFive" element={<PartFiveLayout />}>
+            <Route element={<Books />} index />
+            <Route path="books" element={<Books />} />
+            <Route path="myBooks" element={<MyBooks />} />
+            <Route path="books/:id" element={<Book />} />
+          </Route>
+        </Route>
+        <Route>
           <Route path="*" element={<h1>404</h1>} />
-        </Routes>
-      </main>
+        </Route>
+      </Routes>
     </>
   );
 }

@@ -2,11 +2,11 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { useBook } from "../../../components/partFive/servicee/queries";
 import Details from "../../../components/partFive/BookDetils/Details";
-import BookCard from "../../../components/partFive/ui/BookCard";
-import Notfound from "../../../components/partFive/ui/Not_found";
-import Button from "../../../components/partFive/ui/Button";
-import Backicon from "../../../components/partFive/ui/icons/Back_icon";
 import { Link } from "react-router-dom";
+import BookCard from "../../../components/partFive/components/BookCard";
+import { Button } from "../../../components/ui/button";
+import Back_icon from "../../../components/partFive/components/ui/icons/Back_icon";
+import Not_found from "../../../components/partFive/components/Not_found";
 
 export const Book: React.FC = () => {
   const param = useParams();
@@ -28,13 +28,13 @@ export const Book: React.FC = () => {
               >
                 <Link to={`/partFive`}>
                   <Button className="w-full flex items-center justify-center text-xl">
-                    <Backicon />
+                    <Back_icon />
                     Home
                   </Button>
                 </Link>
               </BookCard>
             ) : (
-              <Notfound />
+              <Not_found />
             )}
           </>
         )}

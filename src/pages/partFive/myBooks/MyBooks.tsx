@@ -1,18 +1,14 @@
-import ListSkeletonZLoading from "../../../components/partFive/ui/List/List_skeleton_loading";
-import List from "../../../components/partFive/ui/List/List";
-import BookCard from "../../../components/partFive/ui/BookCard";
-import Button from "../../../components/partFive/ui/Button";
-import Moreicon from "../../../components/partFive/ui/icons/More_icon";
-import Notfound from "../../../components/partFive/ui/Not_found";
 import { Link } from "react-router-dom";
-import { Book } from "../../../components/partFive/types/types";
-import { Fragment, useContext, useEffect } from "react";
-import { Context } from "../../../components/partFive/ui/Layout/Layout";
+import { useContext, useEffect } from "react";
 import {
-  useInfiniteBooks,
   useMyBooks,
   useMyBooksIds,
 } from "../../../components/partFive/servicee/queries";
+import { Context } from "../../../components/partFive/components/Layout/Layout";
+import List from "../../../components/partFive/components/List/List";
+import BookCard from "../../../components/partFive/components/BookCard";
+import Button from "../../../components/partFive/components/ui/Button";
+import More_icon from "../../../components/partFive/components/ui/icons/More_icon";
 
 export const MyBooks: React.FC = () => {
   const { searchTitle } = useContext(Context);
@@ -30,7 +26,7 @@ export const MyBooks: React.FC = () => {
             <BookCard key={data.data.id} book={data.data}>
               <Link to={`/partFive/books/${data.data.id}`}>
                 <Button className="w-full flex items-center justify-center text-xl">
-                  <Moreicon />
+                  <More_icon />
                   Deatils
                 </Button>
               </Link>

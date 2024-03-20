@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Button from "../../../ui/Button";
 import { Paths } from "../../../types/types";
-import My_books_icon from "../../../ui/icons/My_books_icon";
 import useCurrentPath from "../../../Hook/useCurrentPath";
+import Button from "../../ui/Button";
+import My_books_icon from "../../ui/icons/My_books_icon";
 export const ExtraNavLinks: React.FC = () => {
   const { currentPath } = useCurrentPath();
   return (

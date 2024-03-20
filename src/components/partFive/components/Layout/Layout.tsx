@@ -1,10 +1,10 @@
 import React, { createContext, useState } from "react";
 import { Outlet } from "react-router";
-import Nav from "../../util/Navbar/Nav";
-import Navsub from "../../util/Navbar/Nav_sub";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { BackBtn } from "../../../ui/BackBtn";
+import Nav from "../Navbar/Nav";
+import Nav_sub from "../Navbar/Nav_sub";
 
 interface IContext {
   searchTitle: string;
@@ -29,7 +29,7 @@ export const Layout: React.FC = () => {
       <Context.Provider value={{ searchTitle, setSearchTitle }}>
         <QueryClientProvider client={queryClient}>
           <Nav />
-          <Navsub />
+          <Nav_sub />
           <main className="pb-14 md:pb-2 pt-2">
             <Outlet />
           </main>

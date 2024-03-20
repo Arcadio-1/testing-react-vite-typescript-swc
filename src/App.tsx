@@ -9,7 +9,7 @@ import Signup from "./pages/partFour/signup/Signup";
 import Layout from "./components/partFour/ui/Layout";
 import { Books } from "./pages/partFive/home/Books";
 import { Book } from "./pages/partFive/book/Book";
-import { Layout as PartFiveLayout } from "./components/partFive/util/Layout/Layout";
+import { Layout as PartFiveLayout } from "./components/partFive/ui/Layout/Layout";
 import { MyBooks } from "./pages/partFive/myBooks/MyBooks";
 import { Paginated } from "./pages/partFive/paginated/Paginated";
 import { Manage } from "./pages/partFive/manage/Manage";

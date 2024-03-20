@@ -2,7 +2,7 @@ import { useContext } from "react";
 import Button from "../../../ui/Button";
 import CloseIcon from "../../../ui/icons/Close_icon";
 import SearchIcon from "../../../ui/icons/Search_icon";
-import { Context } from "../../Layout/Layout";
+import { Context } from "../../../ui/Layout/Layout";
 
 const Search_input: React.FC = () => {
   const { searchTitle, setSearchTitle } = useContext(Context);

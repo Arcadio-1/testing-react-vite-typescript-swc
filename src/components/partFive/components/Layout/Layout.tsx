@@ -1,7 +1,7 @@
 import React, { createContext, useState } from "react";
 import { Outlet } from "react-router";
-import Nav from "../Navbar/Nav";
-import Navsub from "../Navbar/Nav_sub";
+import Nav from "../../util/Navbar/Nav";
+import Navsub from "../../util/Navbar/Nav_sub";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { BackBtn } from "../../../ui/BackBtn";

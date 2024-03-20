@@ -1,13 +1,13 @@
-import ListSkeletonZLoading from "../../../components/partFive/util/List/List_skeleton_loading";
-import List from "../../../components/partFive/util/List/List";
-import BookCard from "../../../components/partFive/util/BookCard";
+import ListSkeletonZLoading from "../../../components/partFive/ui/List/List_skeleton_loading";
+import List from "../../../components/partFive/ui/List/List";
+import BookCard from "../../../components/partFive/ui/BookCard";
 import Button from "../../../components/partFive/ui/Button";
 import Moreicon from "../../../components/partFive/ui/icons/More_icon";
-import Notfound from "../../../components/partFive/util/Not_found";
+import Notfound from "../../../components/partFive/ui/Not_found";
 import { Link } from "react-router-dom";
 import { Book } from "../../../components/partFive/types/types";
 import { Fragment, useContext } from "react";
-import { Context } from "../../../components/partFive/util/Layout/Layout";
+import { Context } from "../../../components/partFive/ui/Layout/Layout";
 import { useInfiniteBooks } from "../../../components/partFive/servicee/queries";
 export const Infinit: React.FC = () => {
   const { searchTitle } = useContext(Context);

@@ -1,12 +1,12 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { useBook } from "../../../components/partFive/servicee/queries";
-import Details from "../../../components/partFive/components/Details";
 import { Link } from "react-router-dom";
 import BookCard from "../../../components/partFive/components/BookCard";
 import { Button } from "../../../components/ui/button";
 import Back_icon from "../../../components/partFive/components/ui/icons/Back_icon";
 import Not_found from "../../../components/partFive/components/Not_found";
+import Details from "../../../components/partFive/components/Details";
 
 export const Book: React.FC = () => {
   const param = useParams();

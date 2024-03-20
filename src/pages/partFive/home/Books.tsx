@@ -1,22 +1,21 @@
-import ListSkeletonZLoading from "../util/List/List_skeleton_loading";
-import List from "../util/List/List";
-import BookCard from "../util/BookCard";
-import Button from "../ui/Button";
-import Moreicon from "../ui/icons/More_icon";
-import Notfound from "../util/Not_found";
+import ListSkeletonZLoading from "../../../components/partFive/util/List/List_skeleton_loading";
+import List from "../../../components/partFive/util/List/List";
+import BookCard from "../../../components/partFive/util/BookCard";
+import Button from "../../../components/partFive/ui/Button";
+import Moreicon from "../../../components/partFive/ui/icons/More_icon";
+import Notfound from "../../../components/partFive/util/Not_found";
 import { Link } from "react-router-dom";
-import { Book } from "../types/types";
+import { Book } from "../../../components/partFive/types/types";
 import { useContext } from "react";
-import { Context } from "../util/Layout/Layout";
-import { useBooks } from "../servicee/queries";
+import { Context } from "../../../components/partFive/util/Layout/Layout";
+import { useBooks } from "../../../components/partFive/servicee/queries";
 
-const HomePage = () => {
+export const Books: React.FC = () => {
   const { searchTitle } = useContext(Context);
 
   const { data, status } = useBooks({ title: searchTitle });
-
   return (
-    <>
+    <section className="text-first_text_color max-w-1320 mx-auto">
       {status === "pending" ? (
         <ListSkeletonZLoading />
       ) : (
@@ -41,8 +40,6 @@ const HomePage = () => {
           )}
         </>
       )}
-    </>
+    </section>
   );
 };
-
-export default HomePage;

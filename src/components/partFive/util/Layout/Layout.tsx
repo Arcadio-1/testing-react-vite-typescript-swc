@@ -19,7 +19,9 @@ export const Context = createContext<IContext>({
 export const Layout: React.FC = () => {
   const [searchTitle, setSearchTitle] = useState("");
   const queryClient = new QueryClient({
-    defaultOptions: { queries: { staleTime: 1000 * 60 * 5 } },
+    defaultOptions: {
+      queries: { staleTime: 1000 * 60 * 5, retry: 5, retryDelay: 1000 },
+    },
   });
   return (
     <div>
@@ -31,7 +33,7 @@ export const Layout: React.FC = () => {
           <main className="pb-14 md:pb-2 pt-2">
             <Outlet />
           </main>
-          <ReactQueryDevtools />
+          <ReactQueryDevtools initialIsOpen={false} />
         </QueryClientProvider>
       </Context.Provider>
     </div>

@@ -1,6 +1,6 @@
 import logo_image from "../../../Logo.png";
 import { Link } from "react-router-dom";
-const Logo = () => {
+const Logo: React.FC = () => {
   return (
     <Link
       to={"/"}

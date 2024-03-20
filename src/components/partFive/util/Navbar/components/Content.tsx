@@ -2,6 +2,7 @@ import Searchinput from "./Search_input";
 import Navigation from "./Navigation";
 import Logo from "./Logo";
 import React from "react";
+import { ExtraNavLinks } from "./ExtraNavLinks";
 const Content: React.FC = () => {
   return (
     <section className="bg-bg_2 relative">
@@ -12,6 +13,7 @@ const Content: React.FC = () => {
         <Searchinput />
         <Navigation />
       </nav>
+      <ExtraNavLinks />
     </section>
   );
 };

@@ -7,10 +7,13 @@ import PartFour from "./pages/partFour/PartFour";
 import Login from "./pages/partFour/login/Login";
 import Signup from "./pages/partFour/signup/Signup";
 import Layout from "./components/partFour/ui/Layout";
-import { Books } from "./pages/partFive/Books";
+import { Books } from "./pages/partFive/home/Books";
 import { Book } from "./pages/partFive/book/Book";
 import { Layout as PartFiveLayout } from "./components/partFive/util/Layout/Layout";
 import { MyBooks } from "./pages/partFive/myBooks/MyBooks";
+import { Paginated } from "./pages/partFive/paginated/Paginated";
+import { Manage } from "./pages/partFive/manage/Manage";
+import { Infinit } from "./pages/partFive/infinit/Infinit";
 
 function App() {
   return (
@@ -32,6 +35,9 @@ function App() {
             <Route element={<Books />} index />
             <Route path="books" element={<Books />} />
             <Route path="myBooks" element={<MyBooks />} />
+            <Route path="infinit" element={<Infinit />} />
+            <Route path="paginated" element={<Paginated />} />
+            <Route path="manage" element={<Manage />} />
             <Route path="books/:id" element={<Book />} />
           </Route>
         </Route>

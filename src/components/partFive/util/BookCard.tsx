@@ -1,13 +1,14 @@
-import React, { ReactNode } from "react";
-// import { Book } from "../../types/types";
-// import { useAppDispatch, useAppSelector } from "../../lib/store/hooks";
-// import { add, remove } from "../../lib/store/features/list/list-slice";
+import React, { ReactNode, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { cn } from "../../lib/utils";
-// import Button from "../ui/Button";
-// import CloseIcon from "../ui/icons/Close_icon";
-// import PlusIcon from "../ui/icons/Plus_icon";
 import { Book } from "../types/types";
+import Button from "../ui/Button";
+import Plus_icon from "../ui/icons/Plus_icon";
+import { removeToMyBooks } from "../servicee/booksApi";
+import Close_icon from "../ui/icons/Close_icon";
+import { useAddToMyBookList } from "../servicee/mutations";
+import { useMyBooksIds } from "../servicee/queries";
+import Loading from "../../partOne/ui/Loading";
 
 interface BookCardProps extends React.HTMLAttributes<HTMLDivElement> {
   book: Book;
@@ -22,8 +23,13 @@ const BookCard: React.FC<BookCardProps> = ({
   children,
   ...props
 }) => {
-  // const list = useAppSelector((state) => state.list.books);
-  // const dispatch = useAppDispatch();
+  const addToMyBookList = useAddToMyBookList();
+
+  const myBooksQuery = useMyBooksIds(1);
+
+  useEffect(() => {
+    console.log(myBooksQuery.status);
+  }, [myBooksQuery.status]);
 
   // const addHandler = () => {
   //   dispatch(add(id));
@@ -54,23 +60,40 @@ const BookCard: React.FC<BookCardProps> = ({
           ) : (
             <h2 className="text-xl text-center">{title}</h2>
           )}
-          {/* {list.includes(id) ? (
-            <Button
-              onClick={removeHandler}
-              className="w-full flex items-center justify-center text-xl"
-            >
-              <CloseIcon />
-              Remove
-            </Button>
+          {myBooksQuery.status === "success" ? (
+            myBooksQuery.data?.includes(id) ? (
+              <Button
+                onClick={async () => {
+                  console.log("log");
+                  const res = await removeToMyBooks(id);
+                  console.log(res);
+                }}
+                className="w-full flex items-center justify-center text-xl"
+              >
+                <Close_icon />
+                Remove
+              </Button>
+            ) : (
+              <Button
+                onClick={async () => {
+                  console.log(id);
+
+                  addToMyBookList.mutate({ book_id: id, user_id: 1 });
+                  // const res = await addToMyBooks(id);
+                  // console.log(res);
+                }}
+                className="w-full flex items-center justify-center text-xl"
+              >
+                <Plus_icon />
+                Add
+              </Button>
+            )
           ) : (
-            <Button
-              onClick={addHandler}
-              className="w-full flex items-center justify-center text-xl"
-            >
-              <PlusIcon />
-              Add
+            <Button className="w-full flex items-center justify-center text-xl">
+              <Loading />
             </Button>
-          )} */}
+          )}
+
           {children}
         </div>
       </div>

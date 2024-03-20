@@ -7,7 +7,7 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from "../ui/pagination";
+} from "./pagination";
 type Props = {
   currentPage: number;
   nextPage: number | undefined;

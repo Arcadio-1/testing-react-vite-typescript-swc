@@ -1,9 +1,9 @@
-import Button from "../../ui/Button";
-import HomeIcon from "../../ui/icons/Home_icon";
 import { Link } from "react-router-dom";
-import MyBooksIcon from "../../ui/icons/My_books_icon";
 import { Paths } from "../../types/types";
 import useCurrentPath from "../../Hook/useCurrentPath";
+import Button from "../ui/Button";
+import Home_icon from "../ui/icons/Home_icon";
+import My_books_icon from "../ui/icons/My_books_icon";
 
 const Nav_sub: React.FC = () => {
   const { currentPath } = useCurrentPath();
@@ -15,7 +15,7 @@ const Nav_sub: React.FC = () => {
           selected={currentPath === Paths.home}
           className="border-transparent py-2 w-full justify-center"
         >
-          <HomeIcon className="h-6 w-6 fill-first " />
+          <Home_icon className="h-6 w-6 fill-first " />
           Home
         </Button>
       </Link>
@@ -25,7 +25,7 @@ const Nav_sub: React.FC = () => {
           selected={currentPath === Paths.my_books}
           className="border-transparent py-2 w-full justify-center"
         >
-          <MyBooksIcon className="h-6 w-6 fill-first" />
+          <My_books_icon className="h-6 w-6 fill-first" />
           my books
         </Button>
       </Link>

@@ -13,7 +13,7 @@ server.use(router);
 const app = express();
 app.use(server);
 
-const PORT = 3000;
+const PORT = 8000;
 app.listen(PORT, () => {
-  console.log("Server is running on...");
+  console.log("Server is running on http://localhost:8000/");
 });

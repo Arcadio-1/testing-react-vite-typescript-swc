@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Book } from "../../../components/partFive/types/types";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useBooks } from "../../../components/partFive/servicee/queries";
 import { Context } from "../../../components/partFive/components/Layout/Layout";
 import List_skeleton_loading from "../../../components/partFive/components/List/List_skeleton_loading";
@@ -14,15 +14,18 @@ export const Books: React.FC = () => {
   const { searchTitle } = useContext(Context);
 
   const { data, status } = useBooks({ title: searchTitle });
+  useEffect(() => {
+    console.log(status);
+  }, [status]);
   return (
     <section className="text-first_text_color max-w-1320 mx-auto">
       {status === "pending" ? (
         <List_skeleton_loading />
       ) : (
         <>
-          {status !== "error" && data.length ? (
+          {status === "success" && data.data?.length ? (
             <List>
-              {data.map((book: Book) => {
+              {data.data.map((book: Book) => {
                 return (
                   <BookCard key={book.id} book={book}>
                     <Link to={`/partFive/books/${book.id}`}>

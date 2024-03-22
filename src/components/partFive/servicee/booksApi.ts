@@ -1,15 +1,19 @@
 import axios from "axios";
 import { Book, MyBook, MyBookData } from "../types/types";
+import { request } from "../utils/axiosUtil";
 
-const BASE_URL = "http://localhost:3000";
+const BASE_URL = "http://localhost:8000";
 const axiosInstance = axios.create({ baseURL: BASE_URL });
 
 export const getBooks = async (title: string) => {
-  return (
-    await axiosInstance.get<Book[]>(`books/?title_like=${title}`, {
-      params: { _sort: "title" },
-    })
-  ).data;
+  // return await axiosInstance.get<Book[]>(
+  //   `books/?title_like=${title}&_sort=title`
+  // );
+  return await request({
+    url: `books/?title_like=${title}&_sort=title`,
+  })
+    .then((response) => response)
+    .catch((error) => error);
 };
 
 export const getinfinitBooks = async ({
@@ -80,7 +84,8 @@ export const getMyBooks = async (user_id: number) => {
     .get<MyBook[] | []>(`/myBooks?user_id=${user_id}`)
     .then((res) => {
       if (res.data.length) {
-        return res.data.map((item) => item.book_id);
+        return res.data;
+        // return res.data.map((item) => item.book_id);
       } else {
         return [];
       }
@@ -90,6 +95,10 @@ export const getMyBooks = async (user_id: number) => {
 export const addToMyBooks = async (myBook: MyBookData) => {
   return await axiosInstance.post("myBooks", myBook).then((res) => res.data);
 };
-export const removeToMyBooks = async (id: string) => {
+export const removeFromMyBooks = async ({ id }: { id: number }) => {
   return await axiosInstance.delete(`/myBooks/${id}`).then((res) => res.data);
+};
+
+export const deleteBook = async ({ id }: { id: string }) => {
+  return (await axiosInstance.delete(`books/${id}`)).data;
 };

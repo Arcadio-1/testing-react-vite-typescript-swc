@@ -11,6 +11,7 @@ import {
   getbooksPaginated,
   getinfinitBooks,
 } from "./booksApi";
+import { MyBook } from "../types/types";
 
 export const useBooks = ({ title = "" }) => {
   return useQuery({
@@ -63,12 +64,12 @@ export const useMyBooksIds = (user_id: number) => {
   });
 };
 
-export const useMyBooks = (ids: (string | undefined)[] | undefined) => {
+export const useMyBooks = (myBooks: MyBook[] | undefined) => {
   return useQueries({
-    queries: (ids ?? []).map((id) => {
+    queries: (myBooks ?? []).map((id) => {
       return {
-        queryKey: ["todo", { id }],
-        queryFn: () => getBook(id!),
+        queryKey: ["myBooks", id?.book_id],
+        queryFn: () => getBook(id?.book_id),
       };
     }),
   });

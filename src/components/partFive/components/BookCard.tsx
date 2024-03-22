@@ -2,13 +2,16 @@ import React, { ReactNode, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { cn } from "../../lib/utils";
 import { Book } from "../types/types";
-import { removeToMyBooks } from "../servicee/booksApi";
-import { useAddToMyBookList } from "../servicee/mutations";
+import {
+  useAddToMyBookList,
+  useRemoveFromMyBookList,
+} from "../servicee/mutations";
 import { useMyBooksIds } from "../servicee/queries";
 import Loading from "../../partOne/ui/Loading";
 import Button from "./ui/Button";
 import Close_icon from "./ui/icons/Close_icon";
 import Plus_icon from "./ui/icons/Plus_icon";
+import SpinnerIcon from "./ui/icons/SpinnerIcon";
 
 interface BookCardProps extends React.HTMLAttributes<HTMLDivElement> {
   book: Book;
@@ -24,19 +27,10 @@ const BookCard: React.FC<BookCardProps> = ({
   ...props
 }) => {
   const addToMyBookList = useAddToMyBookList();
+  const removeFromMyBookList = useRemoveFromMyBookList();
 
   const myBooksQuery = useMyBooksIds(1);
-
-  useEffect(() => {
-    console.log(myBooksQuery.status);
-  }, [myBooksQuery.status]);
-
-  // const addHandler = () => {
-  //   dispatch(add(id));
-  // };
-  // const removeHandler = () => {
-  //   dispatch(remove(id));
-  // };
+  const book = myBooksQuery.data?.find((item) => item.book_id === id);
 
   return (
     <article
@@ -61,20 +55,21 @@ const BookCard: React.FC<BookCardProps> = ({
             <h2 className="text-xl text-center">{title}</h2>
           )}
           {myBooksQuery.status === "success" ? (
-            myBooksQuery.data?.includes(id) ? (
+            book ? (
               <Button
+                disabled={removeFromMyBookList.status === "pending"}
                 onClick={async () => {
-                  console.log("log");
-                  const res = await removeToMyBooks(id);
-                  console.log(res);
+                  removeFromMyBookList.mutate(book.id);
                 }}
                 className="w-full flex items-center justify-center text-xl"
               >
                 <Close_icon />
                 Remove
+                {removeFromMyBookList.status === "pending" && <SpinnerIcon />}
               </Button>
             ) : (
               <Button
+                disabled={addToMyBookList.status === "pending"}
                 onClick={async () => {
                   console.log(id);
 
@@ -86,6 +81,7 @@ const BookCard: React.FC<BookCardProps> = ({
               >
                 <Plus_icon />
                 Add
+                {addToMyBookList.status === "pending" && <SpinnerIcon />}
               </Button>
             )
           ) : (

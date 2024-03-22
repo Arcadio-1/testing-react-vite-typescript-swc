@@ -16,8 +16,8 @@ export const MyBooks: React.FC = () => {
   const booksQuery = useMyBooks(myBooksQuery.data);
 
   useEffect(() => {
-    console.log(booksQuery);
-  }, [booksQuery]);
+    console.log(myBooksQuery.data);
+  }, [myBooksQuery.data]);
   return (
     <section className="text-first_text_color max-w-1320 mx-auto">
       <List>

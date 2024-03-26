@@ -1,8 +1,7 @@
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { Book } from "../../../components/partFive/types/types";
-import { Fragment, useContext } from "react";
+import { Fragment } from "react";
 import { useInfiniteBooks } from "../../../components/partFive/servicee/queries";
-import { Context } from "../../../components/partFive/components/Layout/Layout";
 import List_skeleton_loading from "../../../components/partFive/components/List/List_skeleton_loading";
 import List from "../../../components/partFive/components/List/List";
 import BookCard from "../../../components/partFive/components/BookCard";
@@ -10,8 +9,10 @@ import Button from "../../../components/partFive/components/ui/Button";
 import More_icon from "../../../components/partFive/components/ui/icons/More_icon";
 import Not_found from "../../../components/partFive/components/Not_found";
 export const Infinit: React.FC = () => {
-  const { searchTitle } = useContext(Context);
-  const booksQuery = useInfiniteBooks({ title: searchTitle });
+  const [searchParams] = useSearchParams();
+  const title = searchParams.get("title") || "";
+
+  const booksQuery = useInfiniteBooks({ title });
 
   // useEffect(() => {
   //   console.log(booksQuery);

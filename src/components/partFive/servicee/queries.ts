@@ -42,10 +42,47 @@ export const useInfiniteBooks = ({ title = "" }: { title: string }) => {
   });
 };
 
-export const usePaginatedBooks = ({ page = 1, title = "" }) => {
+export const usePaginatedBooks = ({
+  page = 1,
+  title = "",
+  sort = "0",
+  language = "",
+}) => {
+  const sortMap = new Map([
+    ["0", "title"],
+    ["1", "pages"],
+    ["2", "pages"],
+    ["3", "year"],
+    ["4", "year"],
+  ]);
+  const orderMap: Map<string, "asce" | "desc"> = new Map([
+    ["0", "asce"],
+    ["1", "desc"],
+    ["2", "asce"],
+    ["3", "desc"],
+    ["4", "asce"],
+  ]);
+  const langMap = new Map([
+    ["0", "English"],
+    ["1", "French"],
+    ["2", "Russian"],
+  ]);
+  const langs = language ? language.split(/\ /) : [];
+  const langLabelArr = langs.map((lang) => langMap.get(lang) ?? "");
+
+  const sortVal = sortMap.get(sort) ?? "0";
+  const orderVal = orderMap.get(sort) ?? "asce";
   return useQuery({
-    queryKey: ["books", title, page],
-    queryFn: () => getbooksPaginated(page, title, 10),
+    queryKey: ["books", title, page, sortVal, orderVal, ...langLabelArr],
+    queryFn: () =>
+      getbooksPaginated({
+        page,
+        sort: sortVal,
+        title,
+        limit: 10,
+        order: orderVal,
+        langsLabelArr: langLabelArr,
+      }),
     refetchOnWindowFocus: false,
     placeholderData: keepPreviousData,
   });

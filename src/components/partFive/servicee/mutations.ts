@@ -7,19 +7,19 @@ export const useAddToMyBookList = () => {
   return useMutation({
     mutationFn: (myBook: MyBookData) => addToMyBooks(myBook),
     onMutate: () => {
-      console.log("mutate");
+      // console.log("mutate");
     },
 
     onError: () => {
-      console.log("error");
+      // console.log("error");
     },
 
     onSuccess: () => {
-      console.log("success");
+      // console.log("success");
     },
 
     onSettled: async (_, error) => {
-      console.log("settled");
+      // console.log("settled");
       if (error) {
         console.log(error);
       } else {
@@ -33,19 +33,19 @@ export const useRemoveFromMyBookList = () => {
   return useMutation({
     mutationFn: (myBook_id: number) => removeFromMyBooks({ id: myBook_id }),
     onMutate: () => {
-      console.log("mutate");
+      // console.log("mutate");
     },
 
     onError: () => {
-      console.log("error");
+      // console.log("error");
     },
 
     onSuccess: () => {
-      console.log("success");
+      // console.log("success");
     },
 
     onSettled: async (_, error) => {
-      console.log("settled");
+      // console.log("settled");
       if (error) {
         console.log(error);
       } else {
@@ -59,20 +59,20 @@ export const useDeleteFromBookList = () => {
   return useMutation({
     mutationFn: (book_id: string) => deleteBook({ id: book_id }),
     onMutate: () => {
-      console.log("mutate");
+      // console.log("mutate");
     },
 
     onError: () => {
-      console.log("error");
+      // console.log("error");
     },
 
     onSuccess: () => {
-      console.log("success");
+      // console.log("success");
     },
 
     onSettled: async (w, error) => {
-      console.log(w);
-      console.log("settled");
+      // console.log(w);
+      // console.log("settled");
       if (error) {
         console.log(error);
       } else {

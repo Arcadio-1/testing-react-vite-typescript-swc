@@ -1,11 +1,41 @@
-import { useContext } from "react";
-import { Context } from "../../Layout/Layout";
 import Search_icon from "../../ui/icons/Search_icon";
 import Button from "../../ui/Button";
 import Close_icon from "../../ui/icons/Close_icon";
+import { useEffect, useRef, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 
 const Search_input: React.FC = () => {
-  const { searchTitle, setSearchTitle } = useContext(Context);
+  const [searchParam, setSearchParam] = useSearchParams();
+  const [searchTitle, setSearchTitle] = useState(
+    searchParam.get("title") ?? ""
+  );
+  const timeoutRef = useRef<number | null>(null);
+
+  // useEffect(() => {
+  //   console.log(searchTitle);
+  // }, [searchTitle]);
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTitle(event.target.value);
+
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+
+    timeoutRef.current = setTimeout(() => {
+      setSearchParam((currentParams) => {
+        const newSearchParam = new URLSearchParams(currentParams);
+        if (event.target.value) {
+          newSearchParam.set("title", event.target.value);
+        } else {
+          newSearchParam.delete("title");
+        }
+        return newSearchParam;
+      });
+
+      console.log(event.target.value);
+    }, 500);
+  };
   return (
     <div className="relative md:max-w-[40rem] grow mr-auto">
       <label htmlFor="search_input" className="absolute top-1/4 left-2">
@@ -14,7 +44,7 @@ const Search_input: React.FC = () => {
       <input
         placeholder="Enter Title..."
         onChange={(event) => {
-          setSearchTitle(event.target.value);
+          handleChange(event);
         }}
         value={searchTitle}
         id="search_input"
@@ -24,6 +54,11 @@ const Search_input: React.FC = () => {
       {searchTitle && (
         <Button
           onClick={() => {
+            setSearchParam((currentParams) => {
+              const newSearchParam = new URLSearchParams(currentParams);
+              newSearchParam.delete("title");
+              return newSearchParam;
+            });
             setSearchTitle("");
           }}
           className="absolute top-1 right-1 px-1"

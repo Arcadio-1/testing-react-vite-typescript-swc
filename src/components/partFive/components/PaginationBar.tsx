@@ -8,6 +8,8 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "./ui/pagination";
+import { useSearchParams } from "react-router-dom";
+import { cn } from "../../lib/utils";
 type Props = {
   currentPage: number;
   nextPage: number | undefined;
@@ -23,13 +25,26 @@ export const PaginationBar: React.FC<Props> = ({
   const maxPage = Math.min(totalPages, Math.max(currentPage + 2, 5));
   const minPage = Math.max(1, Math.min(currentPage - 2, maxPage - 4));
   let numberedPageItems: JSX.Element[] = [];
+
+  const [_, setSearchParam] = useSearchParams();
+
+  const handleAddParameter = (value: number) => {
+    setSearchParam((currentParams) => {
+      const newParams = new URLSearchParams(currentParams);
+      newParams.set("page", value.toString());
+      return newParams;
+    });
+  };
+
   for (let pages = minPage; pages <= maxPage; pages++) {
     numberedPageItems.push(
       <PaginationItem key={pages}>
         <PaginationLink
+          onClick={() => handleAddParameter(pages)}
           isActive={currentPage === pages}
-          className=""
-          to={`?page=${pages}`}
+          className={cn(``, {
+            "text-gray-900": currentPage === pages,
+          })}
         >
           {pages}
         </PaginationLink>
@@ -49,7 +64,9 @@ export const PaginationBar: React.FC<Props> = ({
                   ? "opacity-35 hover:bg-transparent hover:text-slate-200"
                   : ""
               }`}
-              to={`?page=${previousPage ? previousPage : "1"}`}
+              onClick={() => {
+                handleAddParameter(previousPage ? previousPage : 1);
+              }}
             />
           </PaginationItem>
         )}
@@ -61,8 +78,8 @@ export const PaginationBar: React.FC<Props> = ({
           currentPage + 2 < totalPages && (
             <PaginationItem>
               <PaginationLink
+                onClick={() => handleAddParameter(totalPages)}
                 className="text-slate-200"
-                to={`?page=${totalPages}`}
               >
                 <PaginationEllipsis />
                 {totalPages}
@@ -78,7 +95,9 @@ export const PaginationBar: React.FC<Props> = ({
                   ? "opacity-35 hover:bg-transparent hover:text-slate-200"
                   : ""
               }`}
-              to={`?page=${nextPage ? nextPage : totalPages}`}
+              onClick={() => {
+                handleAddParameter(nextPage ? nextPage : totalPages);
+              }}
             />
           </PaginationItem>
         )}

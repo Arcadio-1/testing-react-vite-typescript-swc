@@ -34,14 +34,30 @@ export const getBook = async (id: string) => {
   return (await axiosInstance.get<Book>(`/books/${id}`)).data;
 };
 
-export const getbooksPaginated = async (
-  page: number,
-  title: string,
-  limit: number
-) => {
+export const getbooksPaginated = async ({
+  limit,
+  page,
+  sort,
+  title,
+  order,
+  langsLabelArr,
+}: {
+  page: number;
+  title: string;
+  limit: number;
+  sort: string;
+  order: "asce" | "desc";
+  langsLabelArr: string[];
+}) => {
+  let langQuery = "";
+  if (langsLabelArr.length) {
+    for (const lang of langsLabelArr) {
+      langQuery += `&language_like=${lang}`;
+    }
+  }
   return await axiosInstance
-    .get<Book[]>(`books/?title_like=${title}`, {
-      params: { _page: page, _sort: "title", _limit: limit },
+    .get<Book[]>(`books/?title_like=${title}${langQuery}`, {
+      params: { _page: page, _sort: sort, _limit: limit, _order: order },
     })
     .then((res) => {
       const totalPages = Math.ceil(
